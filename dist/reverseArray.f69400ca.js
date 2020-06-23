@@ -29465,7 +29465,16 @@ Prism.languages.js = Prism.languages.javascript;
 
 })();
 
-},{}],"components/prismtest.tsx":[function(require,module,exports) {
+},{}],"node_modules/prismjs/components/prism-typescript.js":[function(require,module,exports) {
+Prism.languages.typescript = Prism.languages.extend('javascript', {
+	// From JavaScript Prism keyword list and TypeScript language spec: https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#221-reserved-words
+	'keyword': /\b(?:abstract|as|async|await|break|case|catch|class|const|constructor|continue|debugger|declare|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|is|keyof|let|module|namespace|new|null|of|package|private|protected|public|readonly|return|require|set|static|super|switch|this|throw|try|type|typeof|undefined|var|void|while|with|yield)\b/,
+	'builtin': /\b(?:string|Function|any|number|boolean|Array|symbol|console|Promise|unknown|never)\b/,
+});
+
+Prism.languages.ts = Prism.languages.typescript;
+
+},{}],"components/reverseArray.tsx":[function(require,module,exports) {
 "use strict";
 
 var __extends = this && this.__extends || function () {
@@ -29518,41 +29527,37 @@ var React = __importStar(require("react"));
 
 var prismjs_1 = __importDefault(require("prismjs"));
 
-var code = "\nlet length = 10;\nfor (let i = 0; i < length; i ++){\n  console.log(i);\n}\n".trim();
+require("prismjs/components/prism-typescript");
 
-var Page =
+var reverseArrayString = "\nconst reverseArray = <T>(arr: T[]): T[] => {\n  let start = 0;\n  let end = arr.length - 1;\n  while (start < end) {\n    let temp = arr[start];\n    arr[start] = arr[end];\n    arr[end] = temp;\n    start++; end--;\n  }\n  return arr;\n}\n";
+
+var ReverseArray =
 /** @class */
 function (_super) {
-  __extends(Page, _super);
+  __extends(ReverseArray, _super);
 
-  function Page() {
+  function ReverseArray() {
     return _super !== null && _super.apply(this, arguments) || this;
   }
 
-  Page.prototype.componentDidMount = function () {
-    // You can call the Prism.js API here
-    // Use setTimeout to push onto callback queue so it runs after the DOM is updated
-    setTimeout(function () {
-      return prismjs_1.default.highlightAll();
-    }, 0);
+  ReverseArray.prototype.componentDidMount = function () {
+    prismjs_1.default.highlightAll(); // setTimeout(() => {
+    // }, 0);
   };
 
-  Page.prototype.render = function () {
-    return React.createElement("pre", {
-      className: "line-numbers"
-    }, React.createElement("code", {
-      className: "language-js"
-    }, code));
+  ReverseArray.prototype.render = function () {
+    return (// data-dependencies="typescript"
+      React.createElement("pre", null, React.createElement("code", {
+        className: "language-ts"
+      }, reverseArrayString))
+    );
   };
 
-  return Page;
+  return ReverseArray;
 }(React.Component);
 
-setTimeout(function () {
-  return prismjs_1.default.highlightAll();
-}, 0);
-exports.default = Page;
-},{"react":"node_modules/react/index.js","prismjs":"node_modules/prismjs/prism.js"}],"index.tsx":[function(require,module,exports) {
+exports.default = ReverseArray;
+},{"react":"node_modules/react/index.js","prismjs":"node_modules/prismjs/prism.js","prismjs/components/prism-typescript":"node_modules/prismjs/components/prism-typescript.js"}],"index.tsx":[function(require,module,exports) {
 "use strict";
 
 var __importStar = this && this.__importStar || function (mod) {
@@ -29581,16 +29586,16 @@ var ReactDOM = __importStar(require("react-dom"));
 
 var array_1 = __importDefault(require("./components/array"));
 
-var prismtest_1 = __importDefault(require("./components/prismtest"));
+var reverseArray_1 = __importDefault(require("./components/reverseArray"));
 
 var App = function App() {
-  return React.createElement("div", null, React.createElement(prismtest_1.default, null), React.createElement("nav", null, React.createElement("button", null, "reverse array")), React.createElement(array_1.default, {
+  return React.createElement("main", null, React.createElement(reverseArray_1.default, null), React.createElement("nav", null, React.createElement("button", null, "reverse array")), React.createElement(array_1.default, {
     array: [1, 2, 3, 4, 5, 6]
   }));
 };
 
 ReactDOM.render(React.createElement(App, null), document.getElementById("root"));
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./components/array":"components/array.tsx","./components/prismtest":"components/prismtest.tsx"}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./components/array":"components/array.tsx","./components/reverseArray":"components/reverseArray.tsx"}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -29618,7 +29623,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54398" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53047" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

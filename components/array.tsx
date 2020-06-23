@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import reverseArray from "../reverseArray";
 interface ArrayProps {
   array: (string | number)[];
 }
