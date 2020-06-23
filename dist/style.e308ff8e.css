@@ -1,0 +1,56 @@
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: beige;
+  padding: 15px;
+}
+
+nav button {
+  width: fit-content;
+  font-size: x-large;
+}
+
+.array {
+  background-color: bisque;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.value {
+  font-size: 40px;
+}
+
+.bracket {
+  font-size: 60px;
+}
+
+/* prism styles */
+
+.language-js {
+  font-size: 50px;
+}
+
+.string {
+  color: green;
+}
+
+.keyword {
+  color: blue;
+}
+
+.operator {
+  color: orange;
+}
+
+.punctuation {
+  color: blueviolet;
+}
+
+.number {
+  color: chocolate;
+}
+
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */

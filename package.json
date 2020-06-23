@@ -1,0 +1,17 @@
+{
+  "name": "reverseArray",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "peter",
+  "license": "MIT",
+  "dependencies": {
+    "@types/prismjs": "^1.16.1",
+    "@types/react-dom": "^16.9.8",
+    "prismjs": "^1.20.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "scripts": {
+    "start": "parcel index.html --open"
+  }
+}
