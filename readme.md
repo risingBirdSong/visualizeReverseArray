@@ -8,10 +8,11 @@
   }, [startIdx, stepping, endIdx]); 
  ```
 
-interesting, learned something new about dependencies with useEffect, i was expecting to log
-"were done" after the last reverse took place, not done kept logging, later realizing that i hadn't
-included stepping in the list of dependencies, so i think useEffect was including stepping in it's logic
-and therefore the logic wasnt behaving as expected.
+interesting, learned something new about dependencies with useEffect, 
+i was expecting the finish function to fire with a true boolean after the 'finish' logic hit,
+but instead it was never finishing. later realizing that i hadn't
+included variable stepping in the list of dependencies, so i think useEffect wasn't including stepping
+in its logic and therefore the logic wasnt behaving as expected.
 
 including stepping in the dependencies fixed the bug.
 Another solution is to leave out all the depencies which forces this effect to run everytime
