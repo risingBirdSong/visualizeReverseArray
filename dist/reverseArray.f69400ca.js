@@ -28358,17 +28358,24 @@ var Array = function Array() {
     copyToMutate[startIdx] = copyToMutate[endIdx];
     copyToMutate[endIdx] = temp;
     setArr(copyToMutate);
-  }; // React.useEffect(() => {
-  //   console.log("startIdx", startIdx);
-  //   let val = arr[startIdx];
-  //   console.log("val", val);
-  //   setTemp(val);
-  // }, [startIdx]);
+  };
 
+  React.useEffect(function () {
+    stepping === false && startIdx + 1 >= endIdx ? console.log("were done") : console.log("not done");
+  }, [startIdx, stepping, endIdx]);
+  /*
+  interesting, learned something new about dependencies with useEffect,   i was expecting to log
+  "were done" after the last reverse took place, not done kept logging, later realizing that i hadn't
+  included stepping in the list of dependencies, so i think useEffect was including stepping in it's logic
+  and therefore the logic wasnt behaving as expected.
+     including stepping in the dependencies fixed the bug.
+  Another solution is to leave out all the depencies which forces this effect to run everytime
+  but i think including the correct dependencies is the more correct solution.
+  */
 
   return React.createElement("div", null, React.createElement("div", {
     className: "development"
-  }, React.createElement("h3", null, "start idx"), " ", startIdx, React.createElement("h3", null, "end idx"), " ", endIdx, React.createElement("h3", {
+  }, React.createElement("h1", null, "stepping ", String(stepping)), React.createElement("h3", null, "start idx"), " ", startIdx, React.createElement("h3", null, "end idx"), " ", endIdx, React.createElement("h3", {
     style: {
       color: "red"
     }
@@ -29709,7 +29716,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62696" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63121" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
