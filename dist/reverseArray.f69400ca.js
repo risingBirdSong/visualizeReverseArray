@@ -28285,150 +28285,7 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"components/array.tsx":[function(require,module,exports) {
-"use strict";
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-  }
-  result["default"] = mod;
-  return result;
-};
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var React = __importStar(require("react"));
-
-var Array = function Array() {
-  var _a = React.useState([1, 2, 3, 4, 5, 6]),
-      arr = _a[0],
-      setArr = _a[1];
-
-  var _b = React.useState(-1),
-      startIdx = _b[0],
-      setStart = _b[1];
-
-  var _c = React.useState(undefined),
-      endIdx = _c[0],
-      setEnd = _c[1];
-
-  var _d = React.useState(false),
-      begun = _d[0],
-      begin = _d[1];
-
-  var _e = React.useState(false),
-      finished = _e[0],
-      finish = _e[1];
-
-  var _f = React.useState(undefined),
-      firstSwap = _f[0],
-      setFirstSwap = _f[1];
-
-  var _g = React.useState(false),
-      stepping = _g[0],
-      takeStep = _g[1];
-
-  var _h = React.useState(260),
-      dynmcWidth = _h[0],
-      setWidth = _h[1];
-
-  var _j = React.useState(undefined),
-      lastSwap = _j[0],
-      setLastSwap = _j[1];
-
-  var handleStep = function handleStep() {
-    begin(true); // weve begun
-
-    takeStep(!stepping);
-    setWidth(dynmcWidth - 70); //styling arc
-
-    var startInc = startIdx + 1 || 0;
-    var endDec = endIdx - 1 || arr.length - 1;
-    setStart(startInc);
-    setEnd(endDec);
-  };
-
-  var handleReassign = function handleReassign() {
-    takeStep(!stepping);
-    var copyToMutate = arr.map(function (x) {
-      return x;
-    });
-    var temp = copyToMutate[startIdx];
-    copyToMutate[startIdx] = copyToMutate[endIdx];
-    copyToMutate[endIdx] = temp;
-    setArr(copyToMutate);
-  };
-
-  var startOver = function startOver() {
-    setArr([1, 2, 3, 4, 5, 6]);
-    setStart(-1);
-    setEnd(undefined);
-    begin(false);
-    finish(false);
-    setWidth(260);
-  };
-
-  React.useEffect(function () {
-    stepping === false && startIdx + 1 >= endIdx ? finish(true) : "";
-  }, [startIdx, stepping, endIdx]); // React.useEffect(() => {
-  //   finished === true ?
-  // }, [finished]);
-
-  return React.createElement("div", null, React.createElement("div", {
-    className: "messages"
-  }, React.createElement("div", null, " ", finished ? React.createElement("h1", null, " ", React.createElement("span", {
-    className: "dancingArray"
-  }, "[]"), " ", "array has been reversed!", " ", React.createElement("span", {
-    className: "dancingArray"
-  }, "[]")) : "")), React.createElement("nav", null, finished ? React.createElement("button", {
-    onClick: startOver
-  }, "start over") : !stepping ? React.createElement("button", {
-    onClick: handleStep
-  }, "take a step") : React.createElement("button", {
-    onClick: handleReassign
-  }, " reverse values")), React.createElement("div", {
-    className: "array"
-  }, begun && !finished ? React.createElement("span", {
-    className: "box",
-    style: {
-      width: dynmcWidth
-    }
-  }) : "", React.createElement("span", {
-    className: "openBracket bracket"
-  }, "["), arr.map(function (val, idx, arr) {
-    return finished ? React.createElement("div", {
-      key: val,
-      className: "endvalues"
-    }, React.createElement("span", {
-      style: {
-        color: "gold",
-        fontSize: "50px"
-      }
-    }, val), idx < arr.length - 1 ? React.createElement("span", {
-      className: "comma"
-    }, " , ") : "") : idx < arr.length - 1 ? React.createElement("div", {
-      key: val,
-      className: "values"
-    }, React.createElement("span", {
-      className: idx === startIdx ? "firstVal" : idx === endIdx ? "lastVal" : "regularVal"
-    }, val), React.createElement("span", {
-      className: "comma"
-    }, " , "), " \xA0") : React.createElement("span", {
-      key: "last",
-      className: idx === startIdx ? "firstVal" : idx === endIdx ? "lastVal" : "regularVal"
-    }, val);
-  }), React.createElement("span", {
-    className: "closeBracket bracket"
-  }, "]")));
-};
-
-exports.default = Array;
-},{"react":"node_modules/react/index.js"}],"node_modules/prismjs/prism.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"node_modules/prismjs/prism.js":[function(require,module,exports) {
 var global = arguments[3];
 
 /* **********************************************
@@ -29576,14 +29433,6 @@ Prism.languages.typescript = Prism.languages.extend('javascript', {
 
 Prism.languages.ts = Prism.languages.typescript;
 
-},{}],"reverseArrString.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var reverseArrayString = "\nconst reverseArray = <T>(arr: T[]): T[] => {\n  let start = 0;\n  let end = arr.length - 1;\n  while (start < end) {\n    let temp = arr[start];\n    arr[start] = arr[end];\n    arr[end] = temp;\n    start++;\n    end--;\n  }\n  return arr;\n};\n";
-exports.default = reverseArrayString;
 },{}],"components/reverseArray.tsx":[function(require,module,exports) {
 "use strict";
 
@@ -29639,32 +29488,200 @@ var prismjs_1 = __importDefault(require("prismjs"));
 
 require("prismjs/components/prism-typescript");
 
-var reverseArrString_1 = __importDefault(require("../reverseArrString"));
-
 var ReverseArray =
 /** @class */
 function (_super) {
   __extends(ReverseArray, _super);
 
-  function ReverseArray() {
-    return _super !== null && _super.apply(this, arguments) || this;
+  function ReverseArray(props) {
+    var _this = _super.call(this, props) || this;
+
+    _this.represent = _this.represent.bind(_this);
+    return _this;
   }
 
+  ReverseArray.prototype.represent = function () {
+    var _a;
+
+    return "\n      const reverseArray = (arr: number[]): number[] => {\n        let start = " + (this.props.startIdx || 0) + ";\n        let end = " + (this.props.endIdx || ((_a = this.props.arr) === null || _a === void 0 ? void 0 : _a.length) - 1 || 0) + ";\n        while (start < end) {\n          let temp = arr[start];\n          arr[start] = arr[end];\n          arr[end] = temp;\n          start++;\n          end--;\n        }\n        return arr;\n      };\n";
+  };
+
   ReverseArray.prototype.componentDidMount = function () {
+    prismjs_1.default.highlightAll();
+  };
+
+  ReverseArray.prototype.componentDidUpdate = function () {
     prismjs_1.default.highlightAll();
   };
 
   ReverseArray.prototype.render = function () {
     return React.createElement("pre", null, React.createElement("code", {
       className: "language-ts"
-    }, reverseArrString_1.default));
+    }, this.represent()));
   };
 
   return ReverseArray;
 }(React.Component);
 
 exports.default = ReverseArray;
-},{"react":"node_modules/react/index.js","prismjs":"node_modules/prismjs/prism.js","prismjs/components/prism-typescript":"node_modules/prismjs/components/prism-typescript.js","../reverseArrString":"reverseArrString.ts"}],"index.tsx":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","prismjs":"node_modules/prismjs/prism.js","prismjs/components/prism-typescript":"node_modules/prismjs/components/prism-typescript.js"}],"components/array.tsx":[function(require,module,exports) {
+"use strict";
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+  }
+  result["default"] = mod;
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var React = __importStar(require("react"));
+
+var reverseArray_1 = __importDefault(require("./reverseArray"));
+
+var Array = function Array() {
+  var _a = React.useState([1, 2, 3, 4, 5, 6]),
+      arr = _a[0],
+      setArr = _a[1];
+
+  var _b = React.useState(-1),
+      startIdx = _b[0],
+      setStart = _b[1];
+
+  var _c = React.useState(undefined),
+      endIdx = _c[0],
+      setEnd = _c[1];
+
+  var _d = React.useState(false),
+      begun = _d[0],
+      begin = _d[1];
+
+  var _e = React.useState(false),
+      finished = _e[0],
+      finish = _e[1];
+
+  var _f = React.useState(undefined),
+      firstSwap = _f[0],
+      setFirstSwap = _f[1];
+
+  var _g = React.useState(false),
+      stepping = _g[0],
+      takeStep = _g[1];
+
+  var _h = React.useState(260),
+      dynmcWidth = _h[0],
+      setWidth = _h[1];
+
+  var _j = React.useState(undefined),
+      lastSwap = _j[0],
+      setLastSwap = _j[1];
+
+  var handleStep = function handleStep() {
+    begin(true); // weve begun
+
+    takeStep(!stepping);
+    setWidth(dynmcWidth - 70); //styling arc
+
+    var startInc = startIdx + 1 || 0;
+    var endDec = endIdx - 1 || arr.length - 1;
+    setStart(startInc);
+    setEnd(endDec);
+  };
+
+  var handleReassign = function handleReassign() {
+    takeStep(!stepping);
+    var copyToMutate = arr.map(function (x) {
+      return x;
+    });
+    var temp = copyToMutate[startIdx];
+    copyToMutate[startIdx] = copyToMutate[endIdx];
+    copyToMutate[endIdx] = temp;
+    setArr(copyToMutate);
+  };
+
+  var startOver = function startOver() {
+    setArr([1, 2, 3, 4, 5, 6]);
+    setStart(-1);
+    setEnd(undefined);
+    begin(false);
+    finish(false);
+    setWidth(260);
+  };
+
+  React.useEffect(function () {
+    stepping === false && startIdx + 1 >= endIdx ? finish(true) : "";
+  }, [startIdx, stepping, endIdx]); // React.useEffect(() => {
+  //   finished === true ?
+  // }, [finished]);
+
+  return React.createElement("main", null, React.createElement(reverseArray_1.default, {
+    arr: arr,
+    startIdx: startIdx,
+    endIdx: endIdx
+  }), React.createElement("div", {
+    className: "visualizer"
+  }, React.createElement("div", {
+    className: "messages"
+  }, React.createElement("div", null, " ", finished ? React.createElement("h1", null, " ", React.createElement("span", {
+    className: "dancingArray"
+  }, "[]"), " ", "array has been reversed!", " ", React.createElement("span", {
+    className: "dancingArray"
+  }, "[]")) : "")), React.createElement("nav", null, finished ? React.createElement("button", {
+    onClick: startOver
+  }, "start over") : !stepping ? React.createElement("button", {
+    onClick: handleStep
+  }, "take a step") : React.createElement("button", {
+    onClick: handleReassign
+  }, " reverse values")), React.createElement("div", {
+    className: "array"
+  }, begun && !finished ? React.createElement("span", {
+    className: "box",
+    style: {
+      width: dynmcWidth
+    }
+  }) : "", React.createElement("span", {
+    className: "openBracket bracket"
+  }, "["), arr.map(function (val, idx, arr) {
+    return finished ? React.createElement("div", {
+      key: val,
+      className: "endvalues"
+    }, React.createElement("span", {
+      style: {
+        color: "gold",
+        fontSize: "50px"
+      }
+    }, val), idx < arr.length - 1 ? React.createElement("span", {
+      className: "comma"
+    }, " , ") : "") : idx < arr.length - 1 ? React.createElement("div", {
+      key: val,
+      className: "values"
+    }, React.createElement("span", {
+      className: idx === startIdx ? "firstVal" : idx === endIdx ? "lastVal" : "regularVal"
+    }, val), React.createElement("span", {
+      className: "comma"
+    }, " , "), " \xA0") : React.createElement("span", {
+      key: "last",
+      className: idx === startIdx ? "firstVal" : idx === endIdx ? "lastVal" : "regularVal"
+    }, val);
+  }), React.createElement("span", {
+    className: "closeBracket bracket"
+  }, "]"))));
+};
+
+exports.default = Array;
+},{"react":"node_modules/react/index.js","./reverseArray":"components/reverseArray.tsx"}],"index.tsx":[function(require,module,exports) {
 "use strict";
 
 var __importStar = this && this.__importStar || function (mod) {
@@ -29693,16 +29710,14 @@ var ReactDOM = __importStar(require("react-dom"));
 
 var array_1 = __importDefault(require("./components/array"));
 
-var reverseArray_1 = __importDefault(require("./components/reverseArray"));
-
 var App = function App() {
-  return React.createElement("main", null, React.createElement(reverseArray_1.default, null), React.createElement("div", {
-    className: "visualizer"
-  }, React.createElement(array_1.default, null)));
+  return React.createElement("div", {
+    className: "app"
+  }, React.createElement("div", null, React.createElement(array_1.default, null)));
 };
 
 ReactDOM.render(React.createElement(App, null), document.getElementById("root"));
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./components/array":"components/array.tsx","./components/reverseArray":"components/reverseArray.tsx"}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./components/array":"components/array.tsx"}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -29730,7 +29745,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65133" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57041" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

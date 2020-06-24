@@ -5,13 +5,11 @@ import Page from "./components/prismtest";
 import ReverseArrayCodeBLock from "./components/reverseArray";
 const App = () => {
   return (
-    <main>
-      {/* <Page /> */}
-      <ReverseArrayCodeBLock />
-      <div className="visualizer">
+    <div className="app">
+      <div>
         <Array />
       </div>
-    </main>
+    </div>
   );
 };
 
