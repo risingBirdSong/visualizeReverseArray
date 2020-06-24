@@ -29501,9 +29501,7 @@ function (_super) {
   }
 
   ReverseArray.prototype.represent = function () {
-    var _a;
-
-    return "\n      const reverseArray = (arr: number[]): number[] => {\n        let start = " + (this.props.startIdx || 0) + ";\n        let end = " + (this.props.endIdx || ((_a = this.props.arr) === null || _a === void 0 ? void 0 : _a.length) - 1 || 0) + ";\n        while (start < end) {\n          let temp = arr[start];\n          arr[start] = arr[end];\n          arr[end] = temp;\n          start++;\n          end--;\n        }\n        return arr;\n      };\n";
+    return "\n      const reverseArray = (arr: number[]): number[] => {\n        let start =  " + (this.props.startIdx || 0) + ";\n        let end = " + (this.props.endIdx || null) + ";\n        while (start < end) {\n          let temp = arr[start];\n          arr[start] = arr[end];\n          arr[end] = temp;\n          start++; \n          end--;\n        }\n        return arr;\n      };\n";
   };
 
   ReverseArray.prototype.componentDidMount = function () {
@@ -29515,7 +29513,9 @@ function (_super) {
   };
 
   ReverseArray.prototype.render = function () {
-    return React.createElement("pre", null, React.createElement("code", {
+    return React.createElement("pre", null, React.createElement("span", {
+      className: "codeTest"
+    }, " "), React.createElement("code", {
       className: "language-ts"
     }, this.represent()));
   };

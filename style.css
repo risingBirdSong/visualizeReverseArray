@@ -48,6 +48,14 @@ nav button {
   animation-duration: 2s; /* don't forget to set a duration! */
 }
 
+.codeTest {
+  display: inline-block;
+  margin: 0 0.5rem;
+  font-size: 40px;
+  animation: bounce; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 2s; /* don't forget to set a duration! */
+}
+
 .array {
   background-color: bisque;
   display: flex;
@@ -118,7 +126,7 @@ nav button {
 }
 
 .language-ts {
-  font-size: 30px;
+  font-size: 24px;
 }
 
 .string {

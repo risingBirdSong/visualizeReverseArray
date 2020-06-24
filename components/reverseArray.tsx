@@ -18,13 +18,13 @@ class ReverseArray extends React.Component<representProps> {
   represent() {
     return `
       const reverseArray = (arr: number[]): number[] => {
-        let start = ${this.props.startIdx || 0};
-        let end = ${this.props.endIdx || this.props.arr?.length - 1 || 0};
+        let start =  ${this.props.startIdx || 0};
+        let end = ${this.props.endIdx || null};
         while (start < end) {
           let temp = arr[start];
           arr[start] = arr[end];
           arr[end] = temp;
-          start++;
+          start++; 
           end--;
         }
         return arr;
@@ -41,6 +41,7 @@ class ReverseArray extends React.Component<representProps> {
   render() {
     return (
       <pre>
+        <span className="codeTest"> </span>
         <code className="language-ts">{this.represent()}</code>
       </pre>
     );
