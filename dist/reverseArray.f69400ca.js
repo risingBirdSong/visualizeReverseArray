@@ -28309,7 +28309,7 @@ var Array = function Array() {
       arr = _a[0],
       setArr = _a[1];
 
-  var _b = React.useState(undefined),
+  var _b = React.useState(-1),
       startIdx = _b[0],
       setStart = _b[1];
 
@@ -28317,20 +28317,54 @@ var Array = function Array() {
       endIdx = _c[0],
       setEnd = _c[1];
 
-  var _d = React.useState(undefined),
-      firstSwap = _d[0],
-      setFirstSwap = _d[1];
+  var _d = React.useState(false),
+      begun = _d[0],
+      begin = _d[1];
 
   var _e = React.useState(undefined),
-      lastSwap = _e[0],
-      setLastSwap = _e[1];
+      firstSwap = _e[0],
+      setFirstSwap = _e[1];
+
+  var _f = React.useState(false),
+      stepping = _f[0],
+      takeStep = _f[1];
+
+  var _g = React.useState(260),
+      dynmcWidth = _g[0],
+      setWidth = _g[1];
+
+  var _h = React.useState(undefined),
+      lastSwap = _h[0],
+      setLastSwap = _h[1];
 
   var handleStep = function handleStep() {
+    begin(true); // weve begun
+
+    takeStep(!stepping);
+    setWidth(dynmcWidth - 70); //styling arc
+
     var startInc = startIdx + 1 || 0;
     var endDec = endIdx - 1 || arr.length - 1;
     setStart(startInc);
     setEnd(endDec);
   };
+
+  var handleReassign = function handleReassign() {
+    takeStep(!stepping);
+    var copyToMutate = arr.map(function (x) {
+      return x;
+    });
+    var temp = copyToMutate[startIdx];
+    copyToMutate[startIdx] = copyToMutate[endIdx];
+    copyToMutate[endIdx] = temp;
+    setArr(copyToMutate);
+  }; // React.useEffect(() => {
+  //   console.log("startIdx", startIdx);
+  //   let val = arr[startIdx];
+  //   console.log("val", val);
+  //   setTemp(val);
+  // }, [startIdx]);
+
 
   return React.createElement("div", null, React.createElement("div", {
     className: "development"
@@ -28342,11 +28376,18 @@ var Array = function Array() {
     style: {
       color: "purple"
     }
-  }, "end value ", arr[endIdx]), React.createElement("br", null)), React.createElement("nav", null, React.createElement("button", {
+  }, "end value ", arr[endIdx]), React.createElement("br", null)), React.createElement("nav", null, !stepping ? React.createElement("button", {
     onClick: handleStep
-  }, "reverse array step")), React.createElement("div", {
+  }, "take a step") : React.createElement("button", {
+    onClick: handleReassign
+  }, " reverse values")), React.createElement("div", {
     className: "array"
-  }, React.createElement("span", {
+  }, begun ? React.createElement("span", {
+    className: "box",
+    style: {
+      width: dynmcWidth
+    }
+  }) : "", React.createElement("span", {
     className: "openBracket bracket"
   }, "["), arr.map(function (val, idx, arr) {
     return idx < arr.length - 1 ? React.createElement("div", {
@@ -29668,7 +29709,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61828" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62696" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
