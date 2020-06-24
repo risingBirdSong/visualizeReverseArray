@@ -2,9 +2,9 @@
 
 ### useEffect
 
-  React.useEffect(() => {
+ ``` React.useEffect(() => {
     stepping === false && startIdx + 1 >= endIdx ? finish(true) : "";
-  }, [startIdx, stepping, endIdx]);
+  }, [startIdx, stepping, endIdx]); ```
 
 interesting, learned something new about dependencies with useEffect, i was expecting to log
 "were done" after the last reverse took place, not done kept logging, later realizing that i hadn't
