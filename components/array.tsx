@@ -80,9 +80,8 @@ const Array = () => {
         <span className="openBracket bracket">[</span>
         {arr.map((val, idx, arr) => {
           return idx < arr.length - 1 ? (
-            <div className="value">
+            <div key={val} className="value">
               <span
-                key={val}
                 className={
                   idx === startIdx
                     ? "firstVal"
@@ -97,6 +96,7 @@ const Array = () => {
             </div>
           ) : (
             <span
+              key={"last"}
               className={
                 idx === startIdx
                   ? "firstVal"
@@ -104,7 +104,6 @@ const Array = () => {
                   ? "lastVal"
                   : "regularVal"
               }
-              key={val}
             >
               {val}
             </span>

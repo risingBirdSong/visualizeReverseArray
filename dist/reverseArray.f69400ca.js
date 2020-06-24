@@ -28398,15 +28398,15 @@ var Array = function Array() {
     className: "openBracket bracket"
   }, "["), arr.map(function (val, idx, arr) {
     return idx < arr.length - 1 ? React.createElement("div", {
+      key: val,
       className: "value"
     }, React.createElement("span", {
-      key: val,
       className: idx === startIdx ? "firstVal" : idx === endIdx ? "lastVal" : "regularVal"
     }, val), React.createElement("span", {
       className: "comma"
     }, " , "), " \xA0") : React.createElement("span", {
-      className: idx === startIdx ? "firstVal" : idx === endIdx ? "lastVal" : "regularVal",
-      key: val
+      key: "last",
+      className: idx === startIdx ? "firstVal" : idx === endIdx ? "lastVal" : "regularVal"
     }, val);
   }), React.createElement("span", {
     className: "closeBracket bracket"
