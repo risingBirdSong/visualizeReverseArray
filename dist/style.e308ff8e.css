@@ -18,6 +18,36 @@ nav button {
   font-size: x-large;
 }
 
+.messages {
+  display: flex;
+  justify-content: center;
+  color: goldenrod;
+}
+
+.messages h1 {
+  display: inline-block;
+  margin: 0 0.5rem;
+  font-size: 40px;
+  animation: pulse infinite; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 1s; /* don't forget to set a duration! */
+}
+
+.dancingArray {
+  display: inline-block;
+  margin: 0 0.5rem;
+  font-size: 60px;
+  animation: shakeX infinite; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 1s; /* don't forget to set a duration! */
+}
+
+.endvalues span {
+  display: inline-block;
+  margin: 0 0.5rem;
+  font-size: 40px;
+  animation: bounce infinite; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 2s; /* don't forget to set a duration! */
+}
+
 .array {
   background-color: bisque;
   display: flex;
