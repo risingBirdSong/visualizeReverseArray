@@ -28321,21 +28321,25 @@ var Array = function Array() {
       begun = _d[0],
       begin = _d[1];
 
-  var _e = React.useState(undefined),
-      firstSwap = _e[0],
-      setFirstSwap = _e[1];
+  var _e = React.useState(false),
+      finished = _e[0],
+      finish = _e[1];
 
-  var _f = React.useState(false),
-      stepping = _f[0],
-      takeStep = _f[1];
+  var _f = React.useState(undefined),
+      firstSwap = _f[0],
+      setFirstSwap = _f[1];
 
-  var _g = React.useState(260),
-      dynmcWidth = _g[0],
-      setWidth = _g[1];
+  var _g = React.useState(false),
+      stepping = _g[0],
+      takeStep = _g[1];
 
-  var _h = React.useState(undefined),
-      lastSwap = _h[0],
-      setLastSwap = _h[1];
+  var _h = React.useState(260),
+      dynmcWidth = _h[0],
+      setWidth = _h[1];
+
+  var _j = React.useState(undefined),
+      lastSwap = _j[0],
+      setLastSwap = _j[1];
 
   var handleStep = function handleStep() {
     begin(true); // weve begun
@@ -28360,36 +28364,36 @@ var Array = function Array() {
     setArr(copyToMutate);
   };
 
+  var startOver = function startOver() {
+    setArr([1, 2, 3, 4, 5, 6]);
+    setStart(-1);
+    setEnd(undefined);
+    begin(false);
+    finish(false);
+    setWidth(260);
+  };
+
   React.useEffect(function () {
-    stepping === false && startIdx + 1 >= endIdx ? console.log("were done") : console.log("not done");
-  }, [startIdx, stepping, endIdx]);
-  /*
-  interesting, learned something new about dependencies with useEffect,   i was expecting to log
-  "were done" after the last reverse took place, not done kept logging, later realizing that i hadn't
-  included stepping in the list of dependencies, so i think useEffect was including stepping in it's logic
-  and therefore the logic wasnt behaving as expected.
-     including stepping in the dependencies fixed the bug.
-  Another solution is to leave out all the depencies which forces this effect to run everytime
-  but i think including the correct dependencies is the more correct solution.
-  */
+    stepping === false && startIdx + 1 >= endIdx ? finish(true) : "";
+  }, [startIdx, stepping, endIdx]); // React.useEffect(() => {
+  //   finished === true ?
+  // }, [finished]);
 
   return React.createElement("div", null, React.createElement("div", {
-    className: "development"
-  }, React.createElement("h1", null, "stepping ", String(stepping)), React.createElement("h3", null, "start idx"), " ", startIdx, React.createElement("h3", null, "end idx"), " ", endIdx, React.createElement("h3", {
-    style: {
-      color: "red"
-    }
-  }, "start value ", arr[startIdx]), React.createElement("h3", {
-    style: {
-      color: "purple"
-    }
-  }, "end value ", arr[endIdx]), React.createElement("br", null)), React.createElement("nav", null, !stepping ? React.createElement("button", {
+    className: "messages"
+  }, React.createElement("div", null, " ", finished ? React.createElement("h1", null, " ", React.createElement("span", {
+    className: "dancingArray"
+  }, "[]"), " ", "array has been reversed!", " ", React.createElement("span", {
+    className: "dancingArray"
+  }, "[]")) : "")), React.createElement("nav", null, finished ? React.createElement("button", {
+    onClick: startOver
+  }, "start over") : !stepping ? React.createElement("button", {
     onClick: handleStep
   }, "take a step") : React.createElement("button", {
     onClick: handleReassign
   }, " reverse values")), React.createElement("div", {
     className: "array"
-  }, begun ? React.createElement("span", {
+  }, begun && !finished ? React.createElement("span", {
     className: "box",
     style: {
       width: dynmcWidth
@@ -28397,9 +28401,19 @@ var Array = function Array() {
   }) : "", React.createElement("span", {
     className: "openBracket bracket"
   }, "["), arr.map(function (val, idx, arr) {
-    return idx < arr.length - 1 ? React.createElement("div", {
+    return finished ? React.createElement("div", {
       key: val,
-      className: "value"
+      className: "endvalues"
+    }, React.createElement("span", {
+      style: {
+        color: "gold",
+        fontSize: "50px"
+      }
+    }, val), idx < arr.length - 1 ? React.createElement("span", {
+      className: "comma"
+    }, " , ") : "") : idx < arr.length - 1 ? React.createElement("div", {
+      key: val,
+      className: "values"
     }, React.createElement("span", {
       className: idx === startIdx ? "firstVal" : idx === endIdx ? "lastVal" : "regularVal"
     }, val), React.createElement("span", {
@@ -29716,7 +29730,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63121" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65133" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
