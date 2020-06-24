@@ -28304,25 +28304,65 @@ Object.defineProperty(exports, "__esModule", {
 
 var React = __importStar(require("react"));
 
-var Array = function Array(props) {
-  return React.createElement("div", {
+var Array = function Array() {
+  var _a = React.useState([1, 2, 3, 4, 5, 6]),
+      arr = _a[0],
+      setArr = _a[1];
+
+  var _b = React.useState(undefined),
+      startIdx = _b[0],
+      setStart = _b[1];
+
+  var _c = React.useState(undefined),
+      endIdx = _c[0],
+      setEnd = _c[1];
+
+  var _d = React.useState(undefined),
+      firstSwap = _d[0],
+      setFirstSwap = _d[1];
+
+  var _e = React.useState(undefined),
+      lastSwap = _e[0],
+      setLastSwap = _e[1];
+
+  var handleStep = function handleStep() {
+    var startInc = startIdx + 1 || 0;
+    var endDec = endIdx - 1 || arr.length - 1;
+    setStart(startInc);
+    setEnd(endDec);
+  };
+
+  return React.createElement("div", null, React.createElement("div", {
+    className: "development"
+  }, React.createElement("h3", null, "start idx"), " ", startIdx, React.createElement("h3", null, "end idx"), " ", endIdx, React.createElement("h3", {
+    style: {
+      color: "red"
+    }
+  }, "start value ", arr[startIdx]), React.createElement("h3", {
+    style: {
+      color: "purple"
+    }
+  }, "end value ", arr[endIdx]), React.createElement("br", null)), React.createElement("nav", null, React.createElement("button", {
+    onClick: handleStep
+  }, "reverse array step")), React.createElement("div", {
     className: "array"
   }, React.createElement("span", {
     className: "openBracket bracket"
-  }, "["), props.array.map(function (val, idx, arr) {
+  }, "["), arr.map(function (val, idx, arr) {
     return idx < arr.length - 1 ? React.createElement("div", {
       className: "value"
     }, React.createElement("span", {
-      key: val
+      key: val,
+      className: idx === startIdx ? "firstVal" : idx === endIdx ? "lastVal" : "regularVal"
     }, val), React.createElement("span", {
       className: "comma"
     }, " , "), " \xA0") : React.createElement("span", {
-      className: "value",
+      className: idx === startIdx ? "firstVal" : idx === endIdx ? "lastVal" : "regularVal",
       key: val
     }, val);
   }), React.createElement("span", {
     className: "closeBracket bracket"
-  }, "]"));
+  }, "]")));
 };
 
 exports.default = Array;
@@ -29474,6 +29514,14 @@ Prism.languages.typescript = Prism.languages.extend('javascript', {
 
 Prism.languages.ts = Prism.languages.typescript;
 
+},{}],"reverseArrString.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var reverseArrayString = "\nconst reverseArray = <T>(arr: T[]): T[] => {\n  let start = 0;\n  let end = arr.length - 1;\n  while (start < end) {\n    let temp = arr[start];\n    arr[start] = arr[end];\n    arr[end] = temp;\n    start++;\n    end--;\n  }\n  return arr;\n};\n";
+exports.default = reverseArrayString;
 },{}],"components/reverseArray.tsx":[function(require,module,exports) {
 "use strict";
 
@@ -29529,7 +29577,7 @@ var prismjs_1 = __importDefault(require("prismjs"));
 
 require("prismjs/components/prism-typescript");
 
-var reverseArrayString = "\nconst reverseArray = <T>(arr: T[]): T[] => {\n  let start = 0;\n  let end = arr.length - 1;\n  while (start < end) {\n    let temp = arr[start];\n    arr[start] = arr[end];\n    arr[end] = temp;\n    start++; end--;\n  }\n  return arr;\n}\n";
+var reverseArrString_1 = __importDefault(require("../reverseArrString"));
 
 var ReverseArray =
 /** @class */
@@ -29541,23 +29589,20 @@ function (_super) {
   }
 
   ReverseArray.prototype.componentDidMount = function () {
-    prismjs_1.default.highlightAll(); // setTimeout(() => {
-    // }, 0);
+    prismjs_1.default.highlightAll();
   };
 
   ReverseArray.prototype.render = function () {
-    return (// data-dependencies="typescript"
-      React.createElement("pre", null, React.createElement("code", {
-        className: "language-ts"
-      }, reverseArrayString))
-    );
+    return React.createElement("pre", null, React.createElement("code", {
+      className: "language-ts"
+    }, reverseArrString_1.default));
   };
 
   return ReverseArray;
 }(React.Component);
 
 exports.default = ReverseArray;
-},{"react":"node_modules/react/index.js","prismjs":"node_modules/prismjs/prism.js","prismjs/components/prism-typescript":"node_modules/prismjs/components/prism-typescript.js"}],"index.tsx":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","prismjs":"node_modules/prismjs/prism.js","prismjs/components/prism-typescript":"node_modules/prismjs/components/prism-typescript.js","../reverseArrString":"reverseArrString.ts"}],"index.tsx":[function(require,module,exports) {
 "use strict";
 
 var __importStar = this && this.__importStar || function (mod) {
@@ -29589,9 +29634,9 @@ var array_1 = __importDefault(require("./components/array"));
 var reverseArray_1 = __importDefault(require("./components/reverseArray"));
 
 var App = function App() {
-  return React.createElement("main", null, React.createElement(reverseArray_1.default, null), React.createElement("nav", null, React.createElement("button", null, "reverse array")), React.createElement(array_1.default, {
-    array: [1, 2, 3, 4, 5, 6]
-  }));
+  return React.createElement("main", null, React.createElement(reverseArray_1.default, null), React.createElement("div", {
+    className: "visualizer"
+  }, React.createElement(array_1.default, null)));
 };
 
 ReactDOM.render(React.createElement(App, null), document.getElementById("root"));
@@ -29623,7 +29668,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53047" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61828" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

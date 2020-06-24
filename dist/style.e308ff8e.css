@@ -1,5 +1,8 @@
 main {
   margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  background-color: aliceblue;
 }
 
 nav {
@@ -22,18 +25,48 @@ nav button {
   padding: 20px;
 }
 
-.value {
-  font-size: 40px;
-}
-
 .bracket {
   font-size: 60px;
+}
+
+.visualizer {
+  margin: 70px;
+  padding: 10px;
+  width: 600px;
+  border: 1px solid blue;
+}
+
+.firstVal {
+  display: inline-block;
+  margin: 0 0.5rem;
+  font-size: 40px;
+  color: blue;
+  animation: headShake; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 1s; /* don't forget to set a duration! */
+}
+
+.lastVal {
+  display: inline-block;
+  margin: 0 0.5rem;
+  font-size: 40px;
+  color: darkcyan;
+  animation: headShake; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 1s; /* don't forget to set a duration! */
+}
+
+.regularVal {
+  color: black;
+  font-size: 40px;
 }
 
 /* prism styles */
 
 .language-js {
   font-size: 50px;
+}
+
+.language-ts {
+  font-size: 30px;
 }
 
 .string {

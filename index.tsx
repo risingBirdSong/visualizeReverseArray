@@ -2,16 +2,15 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import Array from "./components/array";
 import Page from "./components/prismtest";
-import ReverseArray from "./components/reverseArray";
+import ReverseArrayCodeBLock from "./components/reverseArray";
 const App = () => {
   return (
     <main>
       {/* <Page /> */}
-      <ReverseArray />
-      <nav>
-        <button>reverse array</button>
-      </nav>
-      <Array array={[1, 2, 3, 4, 5, 6]} />
+      <ReverseArrayCodeBLock />
+      <div className="visualizer">
+        <Array />
+      </div>
     </main>
   );
 };
