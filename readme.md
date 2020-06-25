@@ -1,3 +1,9 @@
+## Visualize reversing an array
+
+## 
+
+to use, first load the dependencies and then run npm start 
+
 ## lessons
 
 ### useEffect
