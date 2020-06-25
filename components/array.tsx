@@ -1,6 +1,6 @@
 import * as React from "react";
 import reverseArray from "../reverseArray";
-
+import ReverseArrayCodeBLock from "./reverseArray";
 const Array = () => {
   const [arr, setArr] = React.useState([1, 2, 3, 4, 5, 6]);
   const [startIdx, setStart] = React.useState<number>(-1);
@@ -52,53 +52,70 @@ const Array = () => {
   // }, [finished]);
 
   return (
-    <div>
-      <div className="messages">
-        <div>
-          {" "}
+    <main>
+      <ReverseArrayCodeBLock arr={arr} startIdx={startIdx} endIdx={endIdx} />
+      <div className="visualizer">
+        <div className="messages">
+          <div>
+            {" "}
+            {finished ? (
+              <h1>
+                {" "}
+                <span className="dancingArray">[]</span>{" "}
+                {"array has been reversed!"}{" "}
+                <span className="dancingArray">[]</span>
+              </h1>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
+        <nav>
           {finished ? (
-            <h1>
-              {" "}
-              <span className="dancingArray">[]</span>{" "}
-              {"array has been reversed!"}{" "}
-              <span className="dancingArray">[]</span>
-            </h1>
+            <button onClick={startOver}>start over</button>
+          ) : !stepping ? (
+            <button onClick={handleStep}>take a step</button>
+          ) : (
+            <button onClick={handleReassign}> reverse values</button>
+          )}
+          {/* <span className="line"></span> */}
+        </nav>
+        <div className="array">
+          {begun && !finished ? (
+            <span
+              className="box"
+              style={{
+                width: dynmcWidth,
+              }}
+            ></span>
           ) : (
             ""
           )}
-        </div>
-      </div>
-      <nav>
-        {finished ? (
-          <button onClick={startOver}>start over</button>
-        ) : !stepping ? (
-          <button onClick={handleStep}>take a step</button>
-        ) : (
-          <button onClick={handleReassign}> reverse values</button>
-        )}
-        {/* <span className="line"></span> */}
-      </nav>
-      <div className="array">
-        {begun && !finished ? (
-          <span
-            className="box"
-            style={{
-              width: dynmcWidth,
-            }}
-          ></span>
-        ) : (
-          ""
-        )}
-        <span className="openBracket bracket">[</span>
-        {arr.map((val, idx, arr) => {
-          return finished ? (
-            <div key={val} className="endvalues">
-              <span style={{ color: "gold", fontSize: "50px" }}>{val}</span>
-              {idx < arr.length - 1 ? <span className="comma"> , </span> : ""}
-            </div>
-          ) : idx < arr.length - 1 ? (
-            <div key={val} className="values">
+          <span className="openBracket bracket">[</span>
+          {arr.map((val, idx, arr) => {
+            return finished ? (
+              <div key={val} className="endvalues">
+                <span style={{ color: "purple", fontSize: "50px" }}>{val}</span>
+                {idx < arr.length - 1 ? <span className="comma"> , </span> : ""}
+              </div>
+            ) : idx < arr.length - 1 ? (
+              <div key={val} className="values">
+                <span
+                  className={
+                    idx === startIdx
+                      ? "firstVal"
+                      : idx === endIdx
+                      ? "lastVal"
+                      : "regularVal"
+                  }
+                >
+                  {val}
+                </span>
+                <span className="comma"> , </span> &nbsp;
+              </div>
+            ) : (
               <span
+                key={"last"}
                 className={
                   idx === startIdx
                     ? "firstVal"
@@ -109,26 +126,12 @@ const Array = () => {
               >
                 {val}
               </span>
-              <span className="comma"> , </span> &nbsp;
-            </div>
-          ) : (
-            <span
-              key={"last"}
-              className={
-                idx === startIdx
-                  ? "firstVal"
-                  : idx === endIdx
-                  ? "lastVal"
-                  : "regularVal"
-              }
-            >
-              {val}
-            </span>
-          );
-        })}
-        <span className="closeBracket bracket">]</span>
+            );
+          })}
+          <span className="closeBracket bracket">]</span>
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
 
