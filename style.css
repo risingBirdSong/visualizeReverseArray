@@ -28,7 +28,7 @@ nav button {
   display: inline-block;
   margin: 0 0.5rem;
   font-size: 40px;
-  animation: pulse infinite; /* referring directly to the animation's @keyframe declaration */
+  animation: pulse 3s; /* referring directly to the animation's @keyframe declaration */
   animation-duration: 1s; /* don't forget to set a duration! */
 }
 
@@ -36,7 +36,7 @@ nav button {
   display: inline-block;
   margin: 0 0.5rem;
   font-size: 60px;
-  animation: shakeX infinite; /* referring directly to the animation's @keyframe declaration */
+  animation: shakeX 3s; /* referring directly to the animation's @keyframe declaration */
   animation-duration: 1s; /* don't forget to set a duration! */
 }
 
@@ -44,8 +44,8 @@ nav button {
   display: inline-block;
   margin: 0 0.5rem;
   font-size: 40px;
-  animation: bounce infinite; /* referring directly to the animation's @keyframe declaration */
-  animation-duration: 2s; /* don't forget to set a duration! */
+  animation: bounce; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 1s; /* don't forget to set a duration! */
 }
 
 .codeTest {

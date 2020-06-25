@@ -29659,7 +29659,7 @@ var Array = function Array() {
       className: "endvalues"
     }, React.createElement("span", {
       style: {
-        color: "gold",
+        color: "purple",
         fontSize: "50px"
       }
     }, val), idx < arr.length - 1 ? React.createElement("span", {

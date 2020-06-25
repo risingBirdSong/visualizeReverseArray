@@ -95,7 +95,7 @@ const Array = () => {
           {arr.map((val, idx, arr) => {
             return finished ? (
               <div key={val} className="endvalues">
-                <span style={{ color: "gold", fontSize: "50px" }}>{val}</span>
+                <span style={{ color: "purple", fontSize: "50px" }}>{val}</span>
                 {idx < arr.length - 1 ? <span className="comma"> , </span> : ""}
               </div>
             ) : idx < arr.length - 1 ? (
